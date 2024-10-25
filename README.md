@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema de Gerenciamento de Contas de Energia - Frontend
 
-## Getting Started
+Este projeto é um frontend desenvolvido em **Next.js** com **TypeScript** e **Node 20**, focado em permitir aos usuários visualizar, fazer upload e download, além de analisar contas de energia elétrica. A aplicação oferece uma interface intuitiva para gerenciar as contas, exibindo detalhes específicos e facilitando o acesso aos documentos em PDF.
 
-First, run the development server:
+## Índice
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades Principais](#funcionalidades-principais)
+- [Capturas de Tela](#capturas-de-tela)
+- [Configuração do Ambiente](#configuração-do-ambiente)
+- [Instalação e Execução](#instalação-e-execução)
+- [Variáveis de Ambiente](#variáveis-de-ambiente)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
 
-```bash
+---
+
+## Sobre o Projeto
+
+Este sistema foi projetado para simplificar a visualização, o upload e a análise de contas de energia elétrica. Integrado ao backend desenvolvido em **Node.js** e **Express**, ele utiliza uma API para gerenciar dados e arquivos, mantendo um fluxo de trabalho eficiente e seguro.
+
+## Funcionalidades Principais
+
+- **Visualização de Contas**: Exibe uma biblioteca de contas de energia com filtros por número do cliente e mês.
+- **Upload de Contas**: Permite o upload de arquivos em PDF das contas para análise e arquivamento.
+- **Download e Visualização em PDF**: Os usuários podem fazer o download das contas e visualizá-las diretamente no navegador.
+
+## Capturas de Tela
+
+### 1. Biblioteca de Contas
+Mostra todas as contas de energia registradas, com filtros para facilitar a busca.
+
+![Biblioteca de Contas](./screenshots/biblioteca-faturas.png)
+
+### 2. Detalhe da Conta
+Exibe os detalhes específicos de cada conta, incluindo consumo e valor da energia.
+
+![Detalhe da Conta](./screenshots/dashboard.png)
+
+### 3. Tela de Upload
+Permite que o usuário faça upload de novos arquivos de conta em PDF.
+
+![Tela de Upload](./screenshots/upload-de-faturas.png)
+
+## Configuração do Ambiente
+
+Certifique-se de que o backend da aplicação esteja em execução e que o **Docker** e **Docker Compose** estejam instalados para configurar o banco de dados e a API. As instruções de configuração do backend estão disponíveis no repositório correspondente.
+
+## Instalação e Execução
+
+1. **Clone o repositório**:
+   ```bash
+   git clone <repo_url>
+   cd <repo_name>
+
+
+Instale as dependências:
+npm install
+
+Inicie o servidor de desenvolvimento:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse a aplicação no navegador em: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Variáveis de Ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Crie um arquivo .env na raiz do projeto e defina as seguintes variáveis:
+NEXT_PUBLIC_API_URL=http://localhost:3000
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_API_URL: URL base para o backend da API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Estrutura do Projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+├── components             # Componentes reutilizáveis da UI
+├── app                    # Rotas e páginas da aplicação Next.js
+│   ├── dashboard          # Página de dashboard
+│   ├── fatura             # Página da biblioteca de faturas
+│   └── upload-fatura      # Página de upload das faturas
+├── public                 # Arquivos públicos (imagens, ícones, etc.)
+└── styles                 # Estilos globais e módulos CSS
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tecnologias Utilizadas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js: Framework React para renderização server-side e geração de sites estáticos.
+TypeScript: Suporte a tipagem estática para um código mais seguro e robusto.
+Tailwind CSS: Biblioteca de estilos CSS utilitários para rápida criação de layouts.
+Docker: Para gerenciamento de containers.
+Express API: Para gerenciamento dos endpoints de upload e consulta das contas.
+
+
