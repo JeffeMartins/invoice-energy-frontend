@@ -78,6 +78,8 @@ NEXT_PUBLIC_API_URL: URL base para o backend da API.
 │   └── upload-fatura      # Página de upload das faturas
 ├── public                 # Arquivos públicos (imagens, ícones, etc.)
 └── styles                 # Estilos globais e módulos CSS
+```
+
 
 
 ### Tecnologias Utilizadas
