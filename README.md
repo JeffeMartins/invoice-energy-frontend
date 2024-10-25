@@ -70,7 +70,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 NEXT_PUBLIC_API_URL: URL base para o backend da API.
 
 ### Estrutura do Projeto
-
+```plaintext
 ├── components             # Componentes reutilizáveis da UI
 ├── app                    # Rotas e páginas da aplicação Next.js
 │   ├── dashboard          # Página de dashboard
