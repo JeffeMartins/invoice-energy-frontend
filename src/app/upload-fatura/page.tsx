@@ -26,7 +26,7 @@ export default function UploadInvoices() {
         formData.append("file", file);
 
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+            const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001');
             const response = await fetch(`${apiUrl}/upload`, {
                 method: 'POST',
                 body: formData,
@@ -40,7 +40,7 @@ export default function UploadInvoices() {
             }
         } catch (error) {
             console.error("Erro ao fazer upload:", error);
-            setMessage("Erro de conexão ao realizar o upload.");
+            setMessage("Erro de conexÃ£o ao realizar o upload.");
         }
     };
 

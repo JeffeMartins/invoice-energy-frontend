@@ -36,7 +36,7 @@ export default function InvoiceLibrary() {
 
     const fetchInvoices = async () => {
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+            const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001');
             const response = await fetch(`${apiUrl}/invoices`);
             if (!response.ok) {
                 throw new Error('Erro ao buscar faturas');
@@ -141,7 +141,7 @@ export default function InvoiceLibrary() {
 
                         <div className="flex space-x-4 mt-6 gap-12">
                             <div>
-                                <label className="text-lg font-semibold mr-2">Número do Cliente</label>
+                                <label className="text-lg font-semibold mr-2">NÃºmero do Cliente</label>
                                 <select
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     value={selectedClient}
@@ -157,7 +157,7 @@ export default function InvoiceLibrary() {
                             </div>
 
                             <div>
-                                <label className="text-lg font-semibold mr-2">Mês de Referência</label>
+                                <label className="text-lg font-semibold mr-2">MÃªs de ReferÃªncia</label>
                                 <select
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     value={selectedMonth}
@@ -184,7 +184,7 @@ export default function InvoiceLibrary() {
                                                         {invoice.referenceMonth} - Cliente {invoice.numberClient}
                                                     </h3>
                                                     <p className="text-gray-600 dark:text-gray-400">Nome: {invoice.client.name}</p>
-                                                    <p className="text-gray-600 dark:text-gray-400">Endereço: {invoice.client.address}</p>
+                                                    <p className="text-gray-600 dark:text-gray-400">EndereÃ§o: {invoice.client.address}</p>
                                                     <p className="text-gray-600 dark:text-gray-400">
                                                         Consumo de Energia: {invoice.electricalEnergyQuantity} kWh
                                                     </p>

@@ -24,7 +24,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+                const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001');
                 const response = await fetch(`${apiUrl}/getVariablesOfInterest`);
                 if (!response.ok) {
                     throw new Error('Erro ao buscar dados');
@@ -167,7 +167,7 @@ export default function Dashboard() {
                             </div>
 
                             <div>
-                                <label className="text-lg font-semibold mr-2">Nº DO CLIENTE</label>
+                                <label className="text-lg font-semibold mr-2">NÂº DO CLIENTE</label>
                                 <select
                                     className="cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     value={selectedClient}

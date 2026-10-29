@@ -1,93 +1,35 @@
-# Sistema de Gerenciamento de Contas de Energia - Frontend
+# Painel de faturas de energia
 
-Este projeto é um frontend desenvolvido em **Next.js** com **TypeScript** e **Node 20**, focado em permitir aos usuários visualizar, fazer upload e download, além de analisar contas de energia elétrica. A aplicação oferece uma interface intuitiva para gerenciar as contas, exibindo detalhes específicos e facilitando o acesso aos documentos em PDF.
+Cliente Next.js/React/TypeScript para consultar a API de faturas, visualizar documentos, enviar PDFs e acompanhar indicadores em gráficos.
 
-## Índice
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Funcionalidades Principais](#funcionalidades-principais)
-- [Capturas de Tela](#capturas-de-tela)
-- [Configuração do Ambiente](#configuração-do-ambiente)
-- [Instalação e Execução](#instalação-e-execução)
-- [Variáveis de Ambiente](#variáveis-de-ambiente)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+[![CI](https://github.com/JeffeMartins/invoice-energy-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffeMartins/invoice-energy-frontend/actions/workflows/ci.yml)
 
----
+## Melhorias de engenharia
 
-## Sobre o Projeto
+- Next.js e React em versões estáveis atuais, substituindo o React release candidate original.
+- TypeScript e tipos alinhados, atualização da cadeia CSS e remoção de ferramentas de lint incompatíveis com Next atual.
+- Página inicial redireciona ao dashboard; metadados e idioma descrevem o projeto.
+- URL da API configurável, com padrão local `http://localhost:3001`, separada da porta do frontend.
+- Build de produção validado com fontes locais, sem depender de download de fontes.
 
-Este sistema foi projetado para simplificar a visualização, o upload e a análise de contas de energia elétrica. Integrado ao backend desenvolvido em **Node.js** e **Express**, ele utiliza uma API para gerenciar dados e arquivos, mantendo um fluxo de trabalho eficiente e seguro.
+## Executar localmente
 
-## Funcionalidades Principais
+Pré-requisitos: Node.js 24 LTS e npm; Docker Compose v2 para os serviços que usam banco.
 
-- **Visualização de Contas**: Exibe uma biblioteca de contas de energia com filtros por número do cliente e mês.
-- **Upload de Contas**: Permite o upload de arquivos em PDF das contas para análise e arquivamento.
-- **Download e Visualização em PDF**: Os usuários podem fazer o download das contas e visualizá-las diretamente no navegador.
-
-## Capturas de Tela
-
-### 1. Biblioteca de Contas
-Mostra todas as contas de energia registradas, com filtros para facilitar a busca.
-
-![Biblioteca de Contas](./screenshots/biblioteca-faturas.png)
-
-### 2. Detalhe da Conta
-Exibe os detalhes específicos de cada conta, incluindo consumo e valor da energia.
-
-![Detalhe da Conta](./screenshots/dashboard.png)
-
-### 3. Tela de Upload
-Permite que o usuário faça upload de novos arquivos de conta em PDF.
-
-![Tela de Upload](./screenshots/upload-de-faturas.png)
-
-## Configuração do Ambiente
-
-Certifique-se de que o backend da aplicação esteja em execução e que o **Docker** e **Docker Compose** estejam instalados para configurar o banco de dados e a API. As instruções de configuração do backend estão disponíveis no repositório correspondente.
-
-## Instalação e Execução
-
-1. **Clone o repositório**:
-   ```bash
-   git clone <repo_url>
-   cd <repo_name>
-
-
-Instale as dependências:
-npm install
-
-Inicie o servidor de desenvolvimento:
+```sh
+npm ci
+cp .env.example .env.local
 npm run dev
-
-Acesse a aplicação no navegador em: http://localhost:3000
-
-### Variáveis de Ambiente
-
-Crie um arquivo .env na raiz do projeto e defina as seguintes variáveis:
-NEXT_PUBLIC_API_URL=http://localhost:3000
-
-
-NEXT_PUBLIC_API_URL: URL base para o backend da API.
-
-### Estrutura do Projeto
-```plaintext
-├── components             # Componentes reutilizáveis da UI
-├── app                    # Rotas e páginas da aplicação Next.js
-│   ├── dashboard          # Página de dashboard
-│   ├── fatura             # Página da biblioteca de faturas
-│   └── upload-fatura      # Página de upload das faturas
-├── public                 # Arquivos públicos (imagens, ícones, etc.)
-└── styles                 # Estilos globais e módulos CSS
 ```
 
+No PowerShell, use `Copy-Item .env.example .env.local`. O frontend usa `http://localhost:3000`, backend `http://localhost:3001`. Inicie primeiro [invoice-energy-backend](https://github.com/JeffeMartins/invoice-energy-backend).
 
+Rotas: `/dashboard`, `/fatura`, `/upload-fatura`. Configuração pública: `NEXT_PUBLIC_API_URL`. Nunca coloque senhas ou chaves privadas em variáveis `NEXT_PUBLIC_*`.
 
-### Tecnologias Utilizadas
+Verificação: `npm run build` e `npm run typecheck`; produção local com `npm start`. Não há suíte completa de testes de UI ou login próprio. Dados e disponibilidade vêm da API; os prints em `screenshots/` são referências, não evidência de integração atual. O backend ainda é uma demonstração sem autenticação para dados reais.
 
-Next.js: Framework React para renderização server-side e geração de sites estáticos.
-TypeScript: Suporte a tipagem estática para um código mais seguro e robusto.
-Tailwind CSS: Biblioteca de estilos CSS utilitários para rápida criação de layouts.
-Docker: Para gerenciamento de containers.
-Express API: Para gerenciamento dos endpoints de upload e consulta das contas.
+## Qualidade e limites da evidência
 
+As mudanças preservam a proposta do exercício e corrigem problemas observados no código. A CI usa Node 24 e `npm ci`, executa o build quando disponível e os testes existentes. O lockfile é versionado; dependências e pastas de build não são. Dependabot acompanha atualizações semanais. Não há promessa de cobertura total, auditoria completa de segurança ou capacidade de produção.
 
+Não publique `.env`, cookies, tokens ou dados reais de clientes. Antes de expor a aplicação à internet, revise autenticação/autorização, TLS, limites de chamadas, logs e backups conforme o domínio. Os exemplos são para execução local. Use `docker compose down` para parar os containers; volumes persistem e `down -v` apaga seus dados.
